@@ -1,4 +1,4 @@
-## mui-test-br.vercel.app
+## https://mui-test-br.vercel.app
 
 Тестовое задание Frontend
 Сделайте ToDo-приложение, позволяющее управлять текущим списком дел
