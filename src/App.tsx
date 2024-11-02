@@ -66,7 +66,7 @@ function App() {
   return (
     <main style={{ textAlign: 'center', padding: 20 }}>
       <Typography
-        variant="h2"
+        variant="h1"
         sx={{ color: '#eedfdf', fontWeight: 100, marginBottom: 3 }}
       >
         todos
