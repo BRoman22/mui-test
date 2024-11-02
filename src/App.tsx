@@ -183,7 +183,7 @@ function App() {
             variant="outlined"
             color="error"
             onClick={handleClear}
-            disabled={!todos.length}
+            disabled={todos.every(t => !t.checked)}
             sx={{ textTransform: 'none' }}
           >
             Clear completed
