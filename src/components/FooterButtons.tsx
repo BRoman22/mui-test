@@ -1,6 +1,7 @@
 import { Typography, Box, Button } from '@mui/material';
 import { Todo, Filter, FILTERS } from '../constants';
 import { filterTodos } from '../services';
+import { useCallback } from 'react';
 
 interface Props {
   todos: Todo[];
@@ -10,9 +11,15 @@ interface Props {
 }
 
 const FooterButtons = ({ todos, filter, setFilter, setTodos }: Props) => {
-  const handleAll = () => setFilter(FILTERS.All);
-  const handleActive = () => setFilter(FILTERS.Active);
-  const handleCompleted = () => setFilter(FILTERS.Completed);
+  const handleAll = useCallback(() => setFilter(FILTERS.All), [setFilter]);
+  const handleActive = useCallback(
+    () => setFilter(FILTERS.Active),
+    [setFilter],
+  );
+  const handleCompleted = useCallback(
+    () => setFilter(FILTERS.Completed),
+    [setFilter],
+  );
   const handleClear = () => setTodos(todos.filter(todo => !todo.checked));
 
   return (
