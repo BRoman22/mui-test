@@ -1,44 +1,12 @@
 import { useState } from 'react';
-import {
-  Typography,
-  Box,
-  TextField,
-  List,
-  ListSubheader,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  IconButton,
-  Button,
-} from '@mui/material';
-import {
-  RadioButtonUnchecked,
-  CheckCircleOutline,
-  DeleteForever,
-} from '@mui/icons-material';
-import { Todo, Filter, FILTERS_MAP, FILTERS } from './constants';
+import { Typography, Box, TextField, List, ListSubheader } from '@mui/material';
+import { Todo, Filter, FILTERS } from './constants';
+import { FooterButtons, ListUnit } from './components';
+import { filterTodos } from './services';
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filter, setFilter] = useState<Filter>(FILTERS.All);
-
-  const toggleTodo = (todoSelected: Todo) =>
-    setTodos(
-      todos.map(todo =>
-        todo.id === todoSelected.id
-          ? { ...todo, checked: !todo.checked }
-          : todo,
-      ),
-    );
-
-  const handleDelete = (todoRemove: Todo) =>
-    setTodos(todos.filter(todo => todo.id !== todoRemove.id));
-
-  const handleAll = () => setFilter(FILTERS.All);
-  const handleActive = () => setFilter(FILTERS.Active);
-  const handleCompleted = () => setFilter(FILTERS.Completed);
-  const handleClear = () => setTodos(todos.filter(todo => !todo.checked));
 
   const handleAdd = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -101,94 +69,21 @@ function App() {
               fullWidth
             />
           </ListSubheader>
-          {todos.filter(FILTERS_MAP[filter]).map(item => (
-            <ListItem
-              disablePadding
+          {todos.filter(filterTodos[filter]).map(item => (
+            <ListUnit
               key={item.id}
-              secondaryAction={
-                <IconButton
-                  edge="end"
-                  aria-label="delete"
-                  onClick={() => handleDelete(item)}
-                >
-                  <DeleteForever color="error" />
-                </IconButton>
-              }
-            >
-              <ListItemButton
-                aria-label="check"
-                onClick={() => toggleTodo(item)}
-              >
-                <ListItemIcon>
-                  {item.checked ? (
-                    <CheckCircleOutline sx={{ color: '#86bdaf' }} />
-                  ) : (
-                    <RadioButtonUnchecked color="disabled" />
-                  )}
-                </ListItemIcon>
-                <ListItemText
-                  primary={item.name}
-                  sx={{
-                    color: item.checked ? 'gray' : '#000',
-                    textDecoration: item.checked ? 'line-through' : 'none',
-                    textDecorationColor: 'gray',
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                  }}
-                />
-              </ListItemButton>
-            </ListItem>
+              item={item}
+              todos={todos}
+              setTodos={setTodos}
+            />
           ))}
         </List>
-        <Box
-          aria-label="buttons panel"
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          sx={{ '& button': { m: 1 } }}
-        >
-          <Typography
-            variant="subtitle1"
-            component="span"
-            sx={{ color: '#919191' }}
-          >
-            {todos.filter(FILTERS_MAP[FILTERS.Active]).length} items left
-          </Typography>
-          <Box>
-            <Button
-              variant={filter === FILTERS.All ? 'contained' : 'outlined'}
-              onClick={handleAll}
-              sx={{ textTransform: 'none' }}
-            >
-              All
-            </Button>
-            <Button
-              variant={filter === FILTERS.Active ? 'contained' : 'outlined'}
-              onClick={handleActive}
-              disabled={todos.every(t => t.checked)}
-              sx={{ textTransform: 'none' }}
-            >
-              Active
-            </Button>
-            <Button
-              variant={filter === FILTERS.Completed ? 'contained' : 'outlined'}
-              onClick={handleCompleted}
-              disabled={todos.every(t => !t.checked)}
-              sx={{ textTransform: 'none' }}
-            >
-              Completed
-            </Button>
-          </Box>
-          <Button
-            variant="outlined"
-            color="error"
-            onClick={handleClear}
-            disabled={todos.every(t => !t.checked)}
-            sx={{ textTransform: 'none' }}
-          >
-            Clear completed
-          </Button>
-        </Box>
+        <FooterButtons
+          todos={todos}
+          filter={filter}
+          setFilter={setFilter}
+          setTodos={setTodos}
+        />
       </Box>
     </main>
   );
