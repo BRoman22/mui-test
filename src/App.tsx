@@ -52,7 +52,6 @@ function App() {
             position: 'relative',
             overflow: 'auto',
             maxHeight: '70vh',
-            '& ul': { padding: 0 },
           }}
           subheader={<li />}
         >
@@ -62,6 +61,10 @@ function App() {
             onSubmit={handleAdd}
           >
             <TextField
+              sx={{
+                '.MuiInputBase-input': { fontSize: '1.5rem', color: '#747474' },
+                '.MuiInputLabel-root': { fontSize: '1.5rem' },
+              }}
               id="input"
               label="What needs to be done?"
               variant="standard"
@@ -78,12 +81,14 @@ function App() {
             />
           ))}
         </List>
-        <FooterButtons
-          todos={todos}
-          filter={filter}
-          setFilter={setFilter}
-          setTodos={setTodos}
-        />
+        {todos.length > 0 && (
+          <FooterButtons
+            todos={todos}
+            filter={filter}
+            setFilter={setFilter}
+            setTodos={setTodos}
+          />
+        )}
       </Box>
     </main>
   );

@@ -67,7 +67,14 @@ const FooterButtons = ({ todos, filter, setFilter, setTodos }: Props) => {
         color="error"
         onClick={handleClear}
         disabled={todos.every(t => !t.checked)}
-        sx={{ textTransform: 'none' }}
+        sx={{
+          textTransform: 'none',
+          visibility: todos.every(t => !t.checked) ? 'hidden' : 'visible',
+
+          '&:hover': {
+            borderColor: 'error',
+          },
+        }}
       >
         Clear completed
       </Button>

@@ -34,8 +34,10 @@ const ListUnit = ({ item, todos, setTodos }: Props) => {
   return (
     <ListItem
       disablePadding
+      sx={{ '&:hover .MuiIconButton-root': { display: 'flex' } }}
       secondaryAction={
         <IconButton
+          sx={{ display: 'none' }}
           edge="end"
           aria-label="delete"
           onClick={() => handleDelete(item)}
@@ -47,19 +49,27 @@ const ListUnit = ({ item, todos, setTodos }: Props) => {
       <ListItemButton aria-label="check" onClick={() => toggleTodo(item)}>
         <ListItemIcon>
           {item.checked ? (
-            <CheckCircleOutline sx={{ color: '#86bdaf' }} />
+            <CheckCircleOutline
+              sx={{ color: '#86bdaf', width: '2rem', height: '2rem' }}
+            />
           ) : (
-            <RadioButtonUnchecked color="disabled" />
+            <RadioButtonUnchecked
+              sx={{ color: '#f3f3f3', width: '2rem', height: '2rem' }}
+            />
           )}
         </ListItemIcon>
         <ListItemText
           primary={item.name}
+          primaryTypographyProps={{
+            fontSize: '1.5rem',
+          }}
           sx={{
-            color: item.checked ? 'gray' : '#000',
+            color: item.checked ? '#d9d9d9' : '#747474',
             textDecoration: item.checked ? 'line-through' : 'none',
-            textDecorationColor: 'gray',
+            textDecorationColor: '#d9d9d9',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
+            transition: 'all 0.4s',
           }}
         />
       </ListItemButton>
