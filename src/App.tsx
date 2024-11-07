@@ -47,31 +47,30 @@ function App() {
           borderRadius: 1,
         }}
       >
+        <ListSubheader
+          sx={{ display: 'flex', alignItems: 'flex-end' }}
+          component="form"
+          onSubmit={handleAdd}
+        >
+          <TextField
+            sx={{
+              '.MuiInputBase-input': { fontSize: '1.5rem', color: '#747474' },
+              '.MuiInputLabel-root': { fontSize: '1.5rem' },
+            }}
+            id="input"
+            label="What needs to be done?"
+            variant="standard"
+            autoComplete="off"
+            fullWidth
+          />
+        </ListSubheader>
         <List
           sx={{
-            position: 'relative',
+            // position: 'relative',
             overflow: 'auto',
-            maxHeight: '70vh',
+            maxHeight: '60vh',
           }}
-          subheader={<li />}
         >
-          <ListSubheader
-            sx={{ display: 'flex', alignItems: 'flex-end' }}
-            component="form"
-            onSubmit={handleAdd}
-          >
-            <TextField
-              sx={{
-                '.MuiInputBase-input': { fontSize: '1.5rem', color: '#747474' },
-                '.MuiInputLabel-root': { fontSize: '1.5rem' },
-              }}
-              id="input"
-              label="What needs to be done?"
-              variant="standard"
-              autoComplete="off"
-              fullWidth
-            />
-          </ListSubheader>
           {todos.filter(filterTodos[filter]).map(item => (
             <ListUnit
               key={item.id}

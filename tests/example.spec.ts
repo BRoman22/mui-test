@@ -66,51 +66,45 @@ test.describe('New Todo', () => {
   });
 });
 
-test.describe('Completed', () => {
-  test.beforeEach(async ({ page }) => {
-    await createDefaultTodos(page);
-  });
+// test.describe('Completed', () => {
+//   test.beforeEach(async ({ page }) => {
+//     await createDefaultTodos(page);
+//   });
 
-  // test('should allow me to mark all items as completed', async ({ page }) => {
-  //   // Ensure all todos have 'completed',
-  //   const todoItem1 = page
-  //     .locator('ul .MuiListItem-root .MuiListItemIcon-root svg')
-  //     .nth(0);
-  //   const todoItem2 = page
-  //     .locator('ul .MuiListItem-root .MuiListItemIcon-root svg')
-  //     .nth(1);
-  //   const todoItem3 = page
-  //     .locator('ul .MuiListItem-root .MuiListItemIcon-root svg')
-  //     .nth(2);
+//   test('should allow me to mark all items as completed', async ({ page }) => {
+//     // Ensure all todos have 'completed',
+//     const todoItem1 = page.getByTestId('data-testid').nth(0);
+//     const todoItem2 = page.getByTestId('data-testid').nth(1);
+//     const todoItem3 = page.getByTestId('data-testid').nth(2);
 
-  //   await todoItem1.click();
-  //   await todoItem2.click();
-  //   await todoItem3.click();
+//     await todoItem1.click();
+//     await todoItem2.click();
+//     await todoItem3.click();
 
-  //   await expect(todoItem1).toHaveId('CheckCircleOutlineIcon');
-  //   await expect(todoItem2).toHaveId('CheckCircleOutlineIcon');
-  //   await expect(todoItem3).toHaveId('CheckCircleOutlineIcon');
-  // });
+//     await expect(todoItem1).toHaveId('CheckCircleOutlineIcon');
+// await expect(todoItem2).toHaveId('CheckCircleOutlineIcon');
+// await expect(todoItem3).toHaveId('CheckCircleOutlineIcon');
+// });
 
-  // test('should allow me to clear the complete state of all items', async ({
-  //   page,
-  // }) => {
-  //   const todoItem1 = page
-  //     .locator('ul .MuiListItem-root .MuiListItemIcon-root svg')
-  //     .nth(0);
-  //   const todoItem2 = page
-  //     .locator('ul .MuiListItem-root .MuiListItemIcon-root svg')
-  //     .nth(1);
-  //   const todoItem3 = page
-  //     .locator('ul .MuiListItem-root .MuiListItemIcon-root svg')
-  //     .nth(2);
+// test('should allow me to clear the complete state of all items', async ({
+//   page,
+// }) => {
+//   const todoItem1 = page
+//     .locator('ul .MuiListItem-root .MuiListItemIcon-root svg')
+//     .nth(0);
+//   const todoItem2 = page
+//     .locator('ul .MuiListItem-root .MuiListItemIcon-root svg')
+//     .nth(1);
+//   const todoItem3 = page
+//     .locator('ul .MuiListItem-root .MuiListItemIcon-root svg')
+//     .nth(2);
 
-  //   // Should be no completed classes.
-  //   await expect(todoItem1).toHaveId('RadioButtonUncheckedIcon');
-  //   await expect(todoItem2).toHaveId('RadioButtonUncheckedIcon');
-  //   await expect(todoItem3).toHaveId('RadioButtonUncheckedIcon');
-  // });
-});
+//   // Should be no completed classes.
+//   await expect(todoItem1).toHaveId('RadioButtonUncheckedIcon');
+//   await expect(todoItem2).toHaveId('RadioButtonUncheckedIcon');
+//   await expect(todoItem3).toHaveId('RadioButtonUncheckedIcon');
+// });
+// });
 
 async function createDefaultTodos(page: Page) {
   // create a new todo locator
